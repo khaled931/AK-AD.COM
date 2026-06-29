@@ -9,17 +9,18 @@ AK-AD media is a bilingual Arabic/English marketing website for a digital market
 - Present AK-AD media professionally.
 - Explain services clearly.
 - Convert visitors into leads through free audit, free consultation, WhatsApp, contact form, and digital presence test.
+- Provide a lightweight protected admin CMS for posts, page notes, and site information.
 - Prepare the project for deployment on Vercel.
-- Keep the structure easy to extend with a future admin/content system.
 
 ## Tech Stack
 
 - **Framework:** Next.js App Router
 - **Language:** TypeScript
-- **Styling:** Custom CSS
+- **Styling:** Custom CSS with dark/light theme support
 - **Deployment:** Vercel
 - **Optional storage:** Vercel KV
 - **Admin auth:** Environment-variable password + signed HTTP-only cookie
+- **Form delivery:** FormSubmit public form endpoint
 
 ## Pages
 
@@ -28,20 +29,26 @@ AK-AD media is a bilingual Arabic/English marketing website for a digital market
 | Home | `/` | Main landing page and conversion journey |
 | Services | `/services` | Detailed service presentation |
 | Portfolio | `/portfolio` | Placeholder portfolio examples |
+| Posts | `/blog` | Published posts from the admin CMS |
+| Single post | `/blog/[id]` | Public post page |
 | About | `/about` | Trust-building company page |
 | Contact | `/contact` | Lead capture and direct contact |
+| Thank you | `/thank-you` | Post-submit confirmation and auto redirect |
 | Admin Login | `/admin/login` | Admin authentication |
-| Admin Dashboard | `/admin/dashboard` | Messages and digital test results |
+| Admin Dashboard | `/admin/dashboard` | Messages, test results, posts, pages, and site info |
 
 ## Main Features
 
 - RTL Arabic-first design.
-- Basic English version using the language switcher.
-- Premium dark visual identity.
+- English version using the language switcher.
+- Dark and light theme toggle with readable text in both modes.
 - Responsive mobile-first layout.
-- Contact form.
+- Contact form with FormSubmit.
+- Thank-you page with automatic redirect back to the website.
 - Digital presence test with scoring.
-- Admin dashboard.
+- Protected admin dashboard.
+- Lightweight CMS for posts, pages, and site information.
+- Public blog generated from published CMS posts.
 - SEO metadata.
 - Optional Vercel KV persistence.
 
@@ -75,9 +82,15 @@ JWT_SECRET=your-long-random-secret
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
 ```
 
-For production storage, add Vercel KV variables from the Vercel dashboard.
+Optional FormSubmit hidden endpoint after first activation:
 
-## Admin
+```txt
+NEXT_PUBLIC_FORMSUBMIT_ENDPOINT=https://formsubmit.co/your-hidden-endpoint
+```
+
+For production CMS persistence, add Vercel KV variables from the Vercel dashboard.
+
+## Admin CMS
 
 Login page:
 
@@ -91,13 +104,15 @@ Dashboard:
 /admin/dashboard
 ```
 
-The dashboard currently supports viewing:
+The dashboard supports:
 
-- Contact messages
-- Digital presence test results
-- Service/package counts
+- Viewing contact messages.
+- Viewing digital presence test results.
+- Creating, editing, previewing, publishing, and deleting posts.
+- Managing page labels and internal descriptions.
+- Managing company/site information.
 
-Full editing of services, packages, portfolio, testimonials, and site content can be added in phase two.
+See [`CMS.md`](./CMS.md) for the full CMS guide.
 
 ## Deployment
 
