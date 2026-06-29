@@ -1,7 +1,3 @@
-"use client";
-
-import { FormEvent, useState } from "react";
-
 const services = [
   "إدارة السوشال ميديا",
   "الهوية البصرية",
@@ -23,45 +19,32 @@ const budgets = [
 ];
 
 export function ContactForm() {
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-
-  async function onSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setStatus("loading");
-    const formData = new FormData(event.currentTarget);
-    const payload = Object.fromEntries(formData.entries());
-
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      });
-
-      if (!response.ok) throw new Error("Request failed");
-      setStatus("success");
-      event.currentTarget.reset();
-    } catch {
-      setStatus("error");
-    }
-  }
-
   return (
-    <form className="form card" onSubmit={onSubmit}>
+    <form
+      action="https://formsubmit.co/contact@ak-ad.com"
+      className="form card"
+      method="POST"
+    >
+      <input type="hidden" name="_subject" value="طلب تواصل جديد من موقع AK-AD media" />
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_next" value="https://ak-ad.com/contact?sent=true" />
+      <input type="text" name="_honey" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
+
       <div className="grid grid-2">
         <div className="field">
           <label>
             <span data-lang="ar">الاسم</span>
             <span data-lang="en">Name</span>
           </label>
-          <input className="input" name="name" required />
+          <input className="input" name="الاسم" required />
         </div>
         <div className="field">
           <label>
             <span data-lang="ar">اسم الشركة</span>
             <span data-lang="en">Company name</span>
           </label>
-          <input className="input" name="company" required />
+          <input className="input" name="اسم الشركة" required />
         </div>
       </div>
 
@@ -71,14 +54,14 @@ export function ContactForm() {
             <span data-lang="ar">رقم الهاتف</span>
             <span data-lang="en">Phone</span>
           </label>
-          <input className="input" name="phone" required />
+          <input className="input" name="رقم الهاتف" required />
         </div>
         <div className="field">
           <label>
             <span data-lang="ar">البريد الإلكتروني</span>
             <span data-lang="en">Email</span>
           </label>
-          <input className="input" name="email" type="email" required />
+          <input className="input" name="البريد الإلكتروني" type="email" required />
         </div>
       </div>
 
@@ -88,7 +71,7 @@ export function ContactForm() {
             <span data-lang="ar">نوع الخدمة المطلوبة</span>
             <span data-lang="en">Requested service</span>
           </label>
-          <select className="select" name="service" required>
+          <select className="select" name="نوع الخدمة المطلوبة" required>
             <option value="">—</option>
             {services.map((service) => <option key={service}>{service}</option>)}
           </select>
@@ -98,7 +81,7 @@ export function ContactForm() {
             <span data-lang="ar">الميزانية التقريبية</span>
             <span data-lang="en">Estimated budget</span>
           </label>
-          <select className="select" name="budget" required>
+          <select className="select" name="الميزانية التقريبية" required>
             <option value="">—</option>
             {budgets.map((budget) => <option key={budget}>{budget}</option>)}
           </select>
@@ -110,26 +93,18 @@ export function ContactForm() {
           <span data-lang="ar">رسالة إضافية</span>
           <span data-lang="en">Additional message</span>
         </label>
-        <textarea className="textarea" name="message" />
+        <textarea className="textarea" name="رسالة إضافية" />
       </div>
 
-      <button className="btn btn-primary" disabled={status === "loading"} type="submit">
-        <span data-lang="ar">{status === "loading" ? "جارٍ الإرسال..." : "إرسال الطلب"}</span>
-        <span data-lang="en">{status === "loading" ? "Sending..." : "Send request"}</span>
+      <button className="btn btn-primary" type="submit">
+        <span data-lang="ar">إرسال الطلب</span>
+        <span data-lang="en">Send request</span>
       </button>
 
-      {status === "success" && (
-        <p className="notice">
-          <span data-lang="ar">تم إرسال الطلب بنجاح. سنتواصل معك قريبًا.</span>
-          <span data-lang="en">Your request was sent successfully. We will contact you soon.</span>
-        </p>
-      )}
-      {status === "error" && (
-        <p className="notice">
-          <span data-lang="ar">حدث خطأ أثناء الإرسال. يمكنك التواصل معنا مباشرة عبر واتساب.</span>
-          <span data-lang="en">Something went wrong. You can contact us directly on WhatsApp.</span>
-        </p>
-      )}
+      <p className="notice">
+        <span data-lang="ar">سيتم إرسال الطلب مباشرة إلى contact@ak-ad.com. عند أول استخدام قد تصل رسالة تأكيد إلى بريد الشركة لتفعيل استقبال الطلبات.</span>
+        <span data-lang="en">The request will be sent directly to contact@ak-ad.com. On first use, a confirmation email may be sent to activate submissions.</span>
+      </p>
     </form>
   );
 }
