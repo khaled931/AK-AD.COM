@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { sendContactEmail } from "@/lib/email";
 import { saveMessage, type ContactMessage } from "@/lib/storage";
 
 function clean(value: unknown) {
@@ -31,19 +30,10 @@ export async function POST(request: Request) {
     };
 
     await saveMessage(message);
-    await sendContactEmail(message);
 
     return NextResponse.json({ ok: true });
   } catch (error) {
     console.error("Contact form error", error);
-    return NextResponse.json(
-      {
-        error:
-          error instanceof Error
-            ? error.message
-            : "Unable to submit contact request"
-      },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Unable to submit contact request" }, { status: 500 });
   }
 }
