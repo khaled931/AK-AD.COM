@@ -27,7 +27,6 @@ export function ContactForm() {
     >
       <input type="hidden" name="_subject" value="طلب تواصل جديد من موقع AK-AD media" />
       <input type="hidden" name="_template" value="table" />
-      <input type="hidden" name="_captcha" value="false" />
       <input type="hidden" name="_next" value="https://ak-ad.com/contact?sent=true" />
       <input type="text" name="_honey" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
 
@@ -37,14 +36,14 @@ export function ContactForm() {
             <span data-lang="ar">الاسم</span>
             <span data-lang="en">Name</span>
           </label>
-          <input className="input" name="الاسم" required />
+          <input className="input" name="name" required />
         </div>
         <div className="field">
           <label>
             <span data-lang="ar">اسم الشركة</span>
             <span data-lang="en">Company name</span>
           </label>
-          <input className="input" name="اسم الشركة" required />
+          <input className="input" name="company" required />
         </div>
       </div>
 
@@ -54,14 +53,14 @@ export function ContactForm() {
             <span data-lang="ar">رقم الهاتف</span>
             <span data-lang="en">Phone</span>
           </label>
-          <input className="input" name="رقم الهاتف" required />
+          <input className="input" name="phone" required />
         </div>
         <div className="field">
           <label>
             <span data-lang="ar">البريد الإلكتروني</span>
             <span data-lang="en">Email</span>
           </label>
-          <input className="input" name="البريد الإلكتروني" type="email" required />
+          <input className="input" name="email" type="email" required />
         </div>
       </div>
 
@@ -71,7 +70,7 @@ export function ContactForm() {
             <span data-lang="ar">نوع الخدمة المطلوبة</span>
             <span data-lang="en">Requested service</span>
           </label>
-          <select className="select" name="نوع الخدمة المطلوبة" required>
+          <select className="select" name="service" required>
             <option value="">—</option>
             {services.map((service) => <option key={service}>{service}</option>)}
           </select>
@@ -81,7 +80,7 @@ export function ContactForm() {
             <span data-lang="ar">الميزانية التقريبية</span>
             <span data-lang="en">Estimated budget</span>
           </label>
-          <select className="select" name="الميزانية التقريبية" required>
+          <select className="select" name="budget" required>
             <option value="">—</option>
             {budgets.map((budget) => <option key={budget}>{budget}</option>)}
           </select>
@@ -93,7 +92,7 @@ export function ContactForm() {
           <span data-lang="ar">رسالة إضافية</span>
           <span data-lang="en">Additional message</span>
         </label>
-        <textarea className="textarea" name="رسالة إضافية" />
+        <textarea className="textarea" name="message" />
       </div>
 
       <button className="btn btn-primary" type="submit">
@@ -102,8 +101,8 @@ export function ContactForm() {
       </button>
 
       <p className="notice">
-        <span data-lang="ar">سيتم إرسال الطلب مباشرة إلى contact@ak-ad.com. عند أول استخدام قد تصل رسالة تأكيد إلى بريد الشركة لتفعيل استقبال الطلبات.</span>
-        <span data-lang="en">The request will be sent directly to contact@ak-ad.com. On first use, a confirmation email may be sent to activate submissions.</span>
+        <span data-lang="ar">عند أول إرسال قد تظهر صفحة تحقق أو تصل رسالة تأكيد إلى contact@ak-ad.com لتفعيل استقبال الطلبات.</span>
+        <span data-lang="en">On the first submission, a verification page may appear or a confirmation email may be sent to contact@ak-ad.com.</span>
       </p>
     </form>
   );
