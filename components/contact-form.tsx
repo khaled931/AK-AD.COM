@@ -18,16 +18,19 @@ const budgets = [
   "غير محدد بعد"
 ];
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://ak-ad.com";
+const formEndpoint = process.env.NEXT_PUBLIC_FORMSUBMIT_ENDPOINT || "https://formsubmit.co/contact@ak-ad.com";
+
 export function ContactForm() {
   return (
     <form
-      action="https://formsubmit.co/contact@ak-ad.com"
+      action={formEndpoint}
       className="form card"
       method="POST"
     >
       <input type="hidden" name="_subject" value="طلب تواصل جديد من موقع AK-AD media" />
       <input type="hidden" name="_template" value="table" />
-      <input type="hidden" name="_next" value="https://ak-ad.com/contact?sent=true" />
+      <input type="hidden" name="_next" value={`${siteUrl}/thank-you`} />
       <input type="text" name="_honey" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
 
       <div className="grid grid-2">
@@ -101,8 +104,8 @@ export function ContactForm() {
       </button>
 
       <p className="notice">
-        <span data-lang="ar">عند أول إرسال قد تظهر صفحة تحقق أو تصل رسالة تأكيد إلى contact@ak-ad.com لتفعيل استقبال الطلبات.</span>
-        <span data-lang="en">On the first submission, a verification page may appear or a confirmation email may be sent to contact@ak-ad.com.</span>
+        <span data-lang="ar">بعد الإرسال ستظهر صفحة تأكيد داخل الموقع. لتقليل رسائل التفعيل المتكررة، استخدم رابط FormSubmit المخفي بعد أول تفعيل.</span>
+        <span data-lang="en">After submission, a confirmation page will appear. To reduce repeated activation emails, use the hidden FormSubmit endpoint after first activation.</span>
       </p>
     </form>
   );
