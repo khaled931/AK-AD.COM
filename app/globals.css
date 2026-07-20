@@ -272,10 +272,7 @@ h3 {
   min-height: 430px;
   position: relative;
   border-radius: 34px;
-  background:
-    linear-gradient(135deg, rgba(212, 180, 79, 0.16), transparent 42%),
-    radial-gradient(circle at 70% 20%, rgba(56, 130, 246, 0.24), transparent 32%),
-    rgba(42, 47, 58, 0.48);
+  background: rgba(42, 47, 58, 0.48);
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
   overflow: hidden;
@@ -284,17 +281,31 @@ h3 {
 .hero-visual:before {
   content: "";
   position: absolute;
-  inset: 28px;
+  z-index: 1;
+  inset: 18px;
   border: 1px solid rgba(212, 180, 79, 0.18);
   border-radius: 28px;
-  background-image:
-    linear-gradient(45deg, rgba(212, 180, 79, 0.09) 25%, transparent 25%),
-    linear-gradient(-45deg, rgba(212, 180, 79, 0.06) 25%, transparent 25%);
-  background-size: 42px 42px;
+  pointer-events: none;
+}
+
+.hero-image {
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero-image-scrim {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(7, 10, 18, 0.88) 0%, rgba(7, 10, 18, 0.44) 34%, transparent 66%),
+    linear-gradient(0deg, rgba(7, 10, 18, 0.34), transparent 45%);
+  pointer-events: none;
 }
 
 .float-card {
   position: absolute;
+  z-index: 2;
   width: 180px;
   background: rgba(11, 15, 25, 0.78);
   border: 1px solid var(--border);
@@ -316,18 +327,94 @@ h3 {
 }
 
 .float-1 {
-  inset-inline-start: 42px;
-  top: 52px;
+  left: 28px;
+  top: 38px;
 }
 
 .float-2 {
-  inset-inline-end: 42px;
-  top: 152px;
+  left: 48px;
+  top: 154px;
 }
 
 .float-3 {
-  inset-inline-start: 96px;
-  bottom: 52px;
+  left: 76px;
+  bottom: 34px;
+}
+
+.page-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(380px, 0.95fr);
+  gap: 48px;
+  align-items: center;
+}
+
+.page-hero-grid h1 {
+  font-size: clamp(2.15rem, 4.8vw, 4rem);
+}
+
+.page-hero-media,
+.portfolio-showcase,
+.card-media {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  background: var(--graphite);
+}
+
+.page-hero-media {
+  min-height: 420px;
+  border-radius: 30px;
+}
+
+.page-hero-media:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(7, 10, 18, 0.32));
+  pointer-events: none;
+}
+
+.page-hero-media img,
+.portfolio-showcase img,
+.card-media img {
+  object-fit: cover;
+}
+
+.about-media img {
+  object-position: 50% center;
+}
+
+.card-media {
+  min-height: 220px;
+  margin: -8px -8px 24px;
+  border-radius: 18px;
+}
+
+.card-media-featured img {
+  object-position: center 44%;
+}
+
+.portfolio-showcase {
+  min-height: 430px;
+  margin-top: 38px;
+  border-radius: 30px;
+}
+
+.portfolio-showcase-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 48%, rgba(7, 10, 18, 0.76));
+  pointer-events: none;
+}
+
+.showcase-badge {
+  position: absolute;
+  inset-inline-start: 26px;
+  bottom: 24px;
+  color: var(--gold);
+  background: rgba(7, 10, 18, 0.82);
+  backdrop-filter: blur(12px);
 }
 
 .problem-list {
@@ -586,6 +673,7 @@ h3 {
   .grid-3,
   .grid-4,
   .hero-wrap,
+  .page-hero-grid,
   .footer-grid {
     grid-template-columns: 1fr;
   }
@@ -618,25 +706,83 @@ h3 {
   }
 
   .hero-visual {
-    min-height: 350px;
+    min-height: 390px;
+  }
+
+  .hero-image {
+    object-position: 60% center;
   }
 
   .float-card {
-    width: 154px;
+    width: 148px;
+    padding: 13px;
   }
 
   .float-1 {
-    inset-inline-start: 22px;
-    top: 38px;
+    left: 18px;
+    top: 26px;
   }
 
   .float-2 {
-    inset-inline-end: 22px;
-    top: 132px;
+    left: 28px;
+    top: 128px;
   }
 
   .float-3 {
-    inset-inline-start: 54px;
-    bottom: 34px;
+    left: 42px;
+    bottom: 24px;
+  }
+
+  .page-hero-grid {
+    gap: 30px;
+  }
+
+  .page-hero-media {
+    min-height: 350px;
+  }
+
+  .portfolio-showcase {
+    min-height: 330px;
+    border-radius: 24px;
+  }
+
+  .portfolio-showcase img {
+    object-position: 50% center;
+  }
+}
+
+@media (max-width: 520px) {
+  .hero-visual {
+    min-height: 340px;
+  }
+
+  .float-card {
+    width: 134px;
+    font-size: 0.86rem;
+  }
+
+  .float-card p {
+    font-size: 0.76rem;
+  }
+
+  .float-1 {
+    top: 18px;
+  }
+
+  .float-2 {
+    top: 112px;
+  }
+
+  .float-3 {
+    bottom: 18px;
+  }
+
+  .page-hero-media {
+    min-height: 290px;
+    border-radius: 24px;
+  }
+
+  .portfolio-showcase {
+    min-height: 260px;
   }
 }

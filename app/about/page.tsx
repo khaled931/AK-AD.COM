@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "من نحن",
@@ -18,10 +19,23 @@ export default function AboutPage() {
   return (
     <section className="section">
       <div className="container">
-        <p className="eyebrow">About AK-AD media</p>
-        <h1><span data-lang="ar">نحن AK-AD media</span><span data-lang="en">We are AK-AD media</span></h1>
-        <p className="lead" data-lang="ar">AK-AD media منصة تسويق إلكتروني تساعد الشركات السورية والمشاريع الصغيرة والمتوسطة على بناء حضور رقمي احترافي وتحويل النشاط الرقمي إلى نمو حقيقي.</p>
-        <p className="lead" data-lang="en">AK-AD media is a digital marketing platform that helps Syrian small and medium businesses build a professional digital presence and turn digital activity into real growth.</p>
+        <div className="page-hero-grid">
+          <div>
+            <p className="eyebrow">About AK-AD media</p>
+            <h1><span data-lang="ar">نحن AK-AD media</span><span data-lang="en">We are AK-AD media</span></h1>
+            <p className="lead" data-lang="ar">AK-AD media منصة تسويق إلكتروني تساعد الشركات السورية والمشاريع الصغيرة والمتوسطة على بناء حضور رقمي احترافي وتحويل النشاط الرقمي إلى نمو حقيقي.</p>
+            <p className="lead" data-lang="en">AK-AD media is a digital marketing platform that helps Syrian small and medium businesses build a professional digital presence and turn digital activity into real growth.</p>
+          </div>
+          <div className="page-hero-media about-media">
+            <Image
+              src="/images/about-team.webp"
+              alt="فريق إبداعي من الشرق الأوسط يتعاون على خطة نمو رقمية — Middle Eastern creative team collaborating"
+              fill
+              priority
+              sizes="(max-width: 920px) 100vw, 44vw"
+            />
+          </div>
+        </div>
 
         <div className="grid grid-2" style={{ marginTop: 40 }}>
           <article className="card"><h2><span data-lang="ar">المهمة</span><span data-lang="en">Mission</span></h2><p className="muted"><span data-lang="ar">مساعدة الشركات على دخول السوق الرقمي بطريقة عملية، واضحة، وقابلة للتنفيذ.</span><span data-lang="en">Help businesses enter the digital market with practical, clear, and executable solutions.</span></p></article>

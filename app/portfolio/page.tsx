@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "أعمالنا",
@@ -52,6 +53,21 @@ export default function PortfolioPage() {
         <h1><span data-lang="ar">نماذج من الأعمال والنتائج التي نصنعها</span><span data-lang="en">Examples of the work and outcomes we build</span></h1>
         <p className="lead" data-lang="ar">هذه نماذج أولية قابلة للاستبدال من لوحة الأدمن عند توفر أعمال حقيقية.</p>
         <p className="lead" data-lang="en">These are initial placeholder examples that can be replaced from the admin dashboard when real work is available.</p>
+
+        <div className="portfolio-showcase">
+          <Image
+            src="/images/portfolio-showcase.webp"
+            alt="نماذج رقمية لقطاعات العيادات والمطاعم وشركات الخدمات — Digital work concepts for clinics, restaurants, and service companies"
+            fill
+            priority
+            sizes="(max-width: 920px) 100vw, 1160px"
+          />
+          <div className="portfolio-showcase-overlay" aria-hidden="true" />
+          <span className="badge showcase-badge">
+            <span data-lang="ar">نماذج تصورية للعرض</span>
+            <span data-lang="en">Concept showcase</span>
+          </span>
+        </div>
 
         <div className="grid grid-3" style={{ marginTop: 34 }}>
           {projects.map((project) => (

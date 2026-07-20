@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { services } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -10,13 +11,26 @@ export default function ServicesPage() {
   return (
     <section className="section">
       <div className="container">
-        <p className="eyebrow">AK-AD media</p>
-        <h1>
-          <span data-lang="ar">خدمات تسويق إلكتروني تساعد شركتك على الظهور والنمو</span>
-          <span data-lang="en">Digital marketing services that help your business appear and grow</span>
-        </h1>
-        <p className="lead" data-lang="ar">كل خدمة مصممة لتخدم هدفًا عمليًا: ظهور أوضح، ثقة أكبر، عملاء أكثر، وتحسين مستمر في الأداء.</p>
-        <p className="lead" data-lang="en">Each service is designed around a practical goal: better visibility, stronger trust, more customers, and continuous improvement.</p>
+        <div className="page-hero-grid">
+          <div>
+            <p className="eyebrow">AK-AD media</p>
+            <h1>
+              <span data-lang="ar">خدمات تسويق إلكتروني تساعد شركتك على الظهور والنمو</span>
+              <span data-lang="en">Digital marketing services that help your business appear and grow</span>
+            </h1>
+            <p className="lead" data-lang="ar">كل خدمة مصممة لتخدم هدفًا عمليًا: ظهور أوضح، ثقة أكبر، عملاء أكثر، وتحسين مستمر في الأداء.</p>
+            <p className="lead" data-lang="en">Each service is designed around a practical goal: better visibility, stronger trust, more customers, and continuous improvement.</p>
+          </div>
+          <div className="page-hero-media">
+            <Image
+              src="/images/services-studio.webp"
+              alt="مساحة عمل تجمع أدوات التسويق وصناعة المحتوى والتحليلات — Integrated digital marketing workspace"
+              fill
+              priority
+              sizes="(max-width: 920px) 100vw, 44vw"
+            />
+          </div>
+        </div>
 
         <div className="grid grid-2" style={{ marginTop: 36 }}>
           {services.map((service) => (
