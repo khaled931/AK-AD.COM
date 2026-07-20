@@ -19,7 +19,15 @@ export const metadata: Metadata = {
       "Digital marketing, social media management, branding, websites, ads, and growth systems for Syrian businesses.",
     type: "website",
     locale: "ar_SY",
-    siteName: "AK-AD media"
+    siteName: "AK-AD media",
+    images: [
+      {
+        url: "/images/ak-ad-hero.webp",
+        width: 1720,
+        height: 914,
+        alt: "AK-AD media — Digital Presence. Real Growth."
+      }
+    ]
   }
 };
 

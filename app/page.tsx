@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { DigitalTest } from "@/components/digital-test";
 import { faqs, packages, sectors, services } from "@/lib/content";
 
@@ -42,10 +43,28 @@ export default function HomePage() {
               <a className="btn btn-secondary" href="https://wa.me/4740381834"><span data-lang="ar">احجز استشارة مجانية</span><span data-lang="en">Book a free consultation</span></a>
             </div>
           </div>
-          <div className="hero-visual" aria-label="AK-AD media visual">
-            <div className="float-card float-1"><strong>Content</strong><p>Ideas, scripts, posts</p></div>
-            <div className="float-card float-2"><strong>Ads</strong><p>Meta & Google growth</p></div>
-            <div className="float-card float-3"><strong>Branding</strong><p>Identity that sells</p></div>
+          <div className="hero-visual">
+            <Image
+              src="/images/ak-ad-hero.webp"
+              alt="فريق AK-AD media يعمل على المحتوى والتحليلات الرقمية — AK-AD media digital marketing workspace"
+              fill
+              priority
+              sizes="(max-width: 920px) 100vw, 45vw"
+              className="hero-image"
+            />
+            <div className="hero-image-scrim" aria-hidden="true" />
+            <div className="float-card float-1">
+              <strong><span data-lang="ar">المحتوى</span><span data-lang="en">Content</span></strong>
+              <p><span data-lang="ar">أفكار ونصوص ومنشورات</span><span data-lang="en">Ideas, scripts, posts</span></p>
+            </div>
+            <div className="float-card float-2">
+              <strong><span data-lang="ar">الإعلانات</span><span data-lang="en">Ads</span></strong>
+              <p><span data-lang="ar">نمو عبر Meta وGoogle</span><span data-lang="en">Meta & Google growth</span></p>
+            </div>
+            <div className="float-card float-3">
+              <strong><span data-lang="ar">الهوية</span><span data-lang="en">Branding</span></strong>
+              <p><span data-lang="ar">هوية تدعم البيع</span><span data-lang="en">Identity that sells</span></p>
+            </div>
           </div>
         </div>
       </section>
@@ -89,6 +108,14 @@ export default function HomePage() {
       <section className="section-sm">
         <div className="container grid grid-2">
           <div className="card featured">
+            <div className="card-media card-media-featured">
+              <Image
+                src="/images/services-studio.webp"
+                alt="أدوات صناعة المحتوى والتسويق والتحليل — Digital marketing creative tools"
+                fill
+                sizes="(max-width: 920px) 100vw, 50vw"
+              />
+            </div>
             <span className="badge"><span data-lang="ar">خدمة مميزة</span><span data-lang="en">Featured service</span></span>
             <h2 style={{ marginTop: 18 }}><span data-lang="ar">إطلاق الوجود الرقمي من الصفر</span><span data-lang="en">Launch your digital presence from zero</span></h2>
             <p className="muted" data-lang="ar">خدمة متكاملة للشركات الجديدة أو المشاريع التي تريد بداية احترافية أونلاين.</p>
