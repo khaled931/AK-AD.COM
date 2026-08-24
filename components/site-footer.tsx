@@ -82,6 +82,18 @@ export function SiteFooter() {
           <span>© 2026 AK-AD media. All rights reserved.</span>
           <span className="footer-legal">Privacy Policy | Terms</span>
         </div>
+
+        <div className="footer-mobile">
+          <div className="footer-mobile-row">
+            <a className="footer-mobile-logo" href="/">AK-AD <span className="gold">media</span></a>
+            <nav className="footer-mobile-links" aria-label="روابط الفوتر الأساسية">
+              <a href="/pricing"><span data-lang="ar">الأسعار</span><span data-lang="en">Pricing</span></a>
+              <a href="/contact"><span data-lang="ar">تواصل معنا</span><span data-lang="en">Contact</span></a>
+              <a href="https://wa.me/4740381834"><span data-lang="ar">واتساب</span><span data-lang="en">WhatsApp</span></a>
+            </nav>
+          </div>
+          <p className="footer-mobile-copy">© 2026 AK-AD media</p>
+        </div>
       </div>
     </footer>
   );

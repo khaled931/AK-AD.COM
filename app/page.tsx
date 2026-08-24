@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { DigitalTest } from "@/components/digital-test";
 import { faqs, sectors, services } from "@/lib/content";
 
@@ -42,10 +43,28 @@ export default function HomePage() {
               <a className="btn btn-secondary" href="https://wa.me/4740381834"><span data-lang="ar">احجز استشارة مجانية</span><span data-lang="en">Book a free consultation</span></a>
             </div>
           </div>
-          <div className="hero-visual" aria-label="AK-AD media visual">
-            <div className="float-card float-1"><strong>Content</strong><p>Ideas, scripts, posts</p></div>
-            <div className="float-card float-2"><strong>Ads</strong><p>Meta & Google growth</p></div>
-            <div className="float-card float-3"><strong>Branding</strong><p>Identity that sells</p></div>
+          <div className="hero-visual" aria-label="مساحة عمل AK-AD media للتسويق الرقمي وصناعة المحتوى">
+            <Image
+              src="/images/ak-ad-hero.webp"
+              alt="مساحة عمل للتسويق الرقمي وصناعة المحتوى في AK-AD media"
+              fill
+              priority
+              sizes="(max-width: 920px) 100vw, 45vw"
+              className="hero-image"
+            />
+            <div className="hero-image-scrim" aria-hidden="true" />
+            <div className="float-card float-1">
+              <strong>المحتوى</strong>
+              <p>أفكار ونصوص ومنشورات</p>
+            </div>
+            <div className="float-card float-2">
+              <strong>الإعلانات</strong>
+              <p>نمو عبر Meta وGoogle</p>
+            </div>
+            <div className="float-card float-3">
+              <strong>الهوية</strong>
+              <p>هوية تدعم البيع</p>
+            </div>
           </div>
         </div>
       </section>
