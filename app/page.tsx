@@ -1,5 +1,5 @@
 import { DigitalTest } from "@/components/digital-test";
-import { faqs, packages, sectors, services } from "@/lib/content";
+import { faqs, sectors, services } from "@/lib/content";
 
 const problems = [
   ["لديك حسابات سوشال ميديا لكنها لا تجلب عملاء؟", "You have social media accounts, but they do not bring customers?"],
@@ -102,24 +102,6 @@ export default function HomePage() {
             </ul>
           </div>
           <DigitalTest />
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="container">
-          <p className="eyebrow"><span data-lang="ar">الباقات</span><span data-lang="en">Packages</span></p>
-          <h2><span data-lang="ar">اختر مستوى العمل المناسب لمرحلتك</span><span data-lang="en">Choose the right level for your stage</span></h2>
-          <div className="grid grid-3" style={{ marginTop: 28 }}>
-            {packages.map((pkg) => (
-              <article className={`card package-card ${pkg.featured ? "featured" : ""}`} key={pkg.ar}>
-                {pkg.featured && <span className="badge"><span data-lang="ar">الأكثر طلبًا</span><span data-lang="en">Most requested</span></span>}
-                <h3 style={{ marginTop: pkg.featured ? 16 : 0 }}>{pkg.ar}</h3>
-                <p className="muted"><span data-lang="ar">{pkg.audienceAr}</span><span data-lang="en">{pkg.audienceEn}</span></p>
-                <ul className="list">{pkg.itemsAr.map((item, index) => <li key={item}><span data-lang="ar">{item}</span><span data-lang="en">{pkg.itemsEn[index]}</span></li>)}</ul>
-                <a className="btn btn-primary" href="/contact" style={{ marginTop: 24, width: "100%" }}><span data-lang="ar">اطلب هذه الباقة</span><span data-lang="en">Request this package</span></a>
-              </article>
-            ))}
-          </div>
         </div>
       </section>
 
