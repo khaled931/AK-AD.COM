@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 const nav = [
   { href: "/", ar: "الرئيسية", en: "Home" },
   { href: "/services", ar: "الخدمات", en: "Services" },
+  { href: "/pricing", ar: "الأسعار", en: "Pricing" },
   { href: "/portfolio", ar: "أعمالنا", en: "Portfolio" },
   { href: "/blog", ar: "المنشورات", en: "Posts" },
   { href: "/about", ar: "من نحن", en: "About" },
@@ -33,9 +34,32 @@ export function SiteHeader() {
     applyTheme(savedTheme);
   }, []);
 
+  useEffect(() => {
+    if (!open) {
+      return;
+    }
+
+    const previousOverflow = document.body.style.overflow;
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setOpen(false);
+      }
+    }
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [open]);
+
   function toggleLanguage() {
     const next = lang === "ar" ? "en" : "ar";
     setLang(next);
+    setOpen(false);
     window.localStorage.setItem("akad_lang", next);
     document.documentElement.dataset.currentLang = next;
     document.documentElement.lang = next;
@@ -52,21 +76,40 @@ export function SiteHeader() {
   return (
     <header className="site-header">
       <div className="container header-inner">
-        <a className="logo" href="/">
+        <a className="logo" href="/" onClick={() => setOpen(false)}>
           AK-AD <span>media</span>
         </a>
 
-        <nav className={`nav ${open ? "open" : ""}`} aria-label="Main navigation">
+        <nav
+          id="primary-navigation"
+          className={`nav ${open ? "open" : ""}`}
+          aria-label="Main navigation"
+        >
+          <div className="mobile-nav-head">
+            <strong>
+              <span data-lang="ar">القائمة</span>
+              <span data-lang="en">Menu</span>
+            </strong>
+            <button className="menu-close" type="button" onClick={() => setOpen(false)} aria-label="Close menu">
+              ×
+            </button>
+          </div>
+
           {nav.map((item) => (
             <a href={item.href} key={item.href} onClick={() => setOpen(false)}>
               <span data-lang="ar">{item.ar}</span>
               <span data-lang="en">{item.en}</span>
             </a>
           ))}
+
+          <a className="mobile-nav-cta" href="/contact" onClick={() => setOpen(false)}>
+            <span data-lang="ar">احصل على تقييم مجاني</span>
+            <span data-lang="en">Get a free audit</span>
+          </a>
         </nav>
 
         <div className="header-actions">
-          <button className="lang-toggle" onClick={toggleLanguage} aria-label="Switch language">
+          <button className="lang-toggle" onClick={toggleLanguage} aria-label="Switch language" type="button">
             {lang === "ar" ? "EN" : "AR"}
           </button>
           <a className="btn btn-primary" href="/contact">
@@ -74,19 +117,34 @@ export function SiteHeader() {
             <span data-lang="en">Get a free audit</span>
           </a>
           <button
-            className="lang-toggle"
+            className="lang-toggle theme-toggle"
             onClick={toggleTheme}
             aria-label="Toggle light and dark mode"
             title={theme === "dark" ? "Light mode" : "Dark mode"}
-            style={{ width: 42, minHeight: 42, padding: 0 }}
+            type="button"
           >
             {theme === "dark" ? "☀" : "☾"}
           </button>
-          <button className="lang-toggle mobile-menu" onClick={() => setOpen((value) => !value)} aria-label="Open menu">
-            ☰
+          <button
+            className="lang-toggle mobile-menu"
+            onClick={() => setOpen((value) => !value)}
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            aria-controls="primary-navigation"
+            type="button"
+          >
+            <span aria-hidden="true">{open ? "×" : "☰"}</span>
           </button>
         </div>
       </div>
+
+      <button
+        className={`menu-backdrop ${open ? "open" : ""}`}
+        type="button"
+        aria-label="Close menu"
+        tabIndex={open ? 0 : -1}
+        onClick={() => setOpen(false)}
+      />
     </header>
   );
 }

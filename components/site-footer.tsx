@@ -1,9 +1,10 @@
 const links = [
-  { href: "/", ar: "الرئيسية", en: "Home" },
-  { href: "/services", ar: "الخدمات", en: "Services" },
-  { href: "/portfolio", ar: "أعمالنا", en: "Portfolio" },
-  { href: "/about", ar: "من نحن", en: "About" },
-  { href: "/contact", ar: "تواصل معنا", en: "Contact" }
+  { href: "/", ar: "الرئيسية", en: "Home", secondary: false },
+  { href: "/services", ar: "الخدمات", en: "Services", secondary: false },
+  { href: "/pricing", ar: "الأسعار", en: "Pricing", secondary: false },
+  { href: "/portfolio", ar: "أعمالنا", en: "Portfolio", secondary: true },
+  { href: "/about", ar: "من نحن", en: "About", secondary: true },
+  { href: "/contact", ar: "تواصل معنا", en: "Contact", secondary: false }
 ];
 
 const services = [
@@ -20,7 +21,7 @@ export function SiteFooter() {
     <footer className="footer">
       <div className="container">
         <div className="footer-grid">
-          <div>
+          <div className="footer-intro">
             <h3>AK-AD <span className="gold">media</span></h3>
             <p className="eyebrow">Digital Presence. Real Growth.</p>
             <p className="muted" data-lang="ar">
@@ -31,14 +32,14 @@ export function SiteFooter() {
             </p>
           </div>
 
-          <div>
+          <div className="footer-links">
             <h3>
               <span data-lang="ar">روابط سريعة</span>
               <span data-lang="en">Quick links</span>
             </h3>
             <ul className="list">
               {links.map((link) => (
-                <li key={link.href}>
+                <li className={link.secondary ? "footer-secondary-link" : undefined} key={link.href}>
                   <a href={link.href}>
                     <span data-lang="ar">{link.ar}</span>
                     <span data-lang="en">{link.en}</span>
@@ -48,7 +49,7 @@ export function SiteFooter() {
             </ul>
           </div>
 
-          <div>
+          <div className="footer-services">
             <h3>
               <span data-lang="ar">الخدمات</span>
               <span data-lang="en">Services</span>
@@ -63,15 +64,15 @@ export function SiteFooter() {
             </ul>
           </div>
 
-          <div>
+          <div className="footer-contact">
             <h3>
               <span data-lang="ar">التواصل</span>
               <span data-lang="en">Contact</span>
             </h3>
             <ul className="list">
               <li><a href="https://wa.me/4740381834">WhatsApp</a></li>
-              <li><a href="https://www.facebook.com/profile.php?id=61589601436614">Facebook</a></li>
-              <li><a href="https://www.instagram.com/akad.media0?igsh=eWx1dGhqY3oyenhs">Instagram</a></li>
+              <li className="footer-social-secondary"><a href="https://www.facebook.com/profile.php?id=61589601436614">Facebook</a></li>
+              <li className="footer-social-secondary"><a href="https://www.instagram.com/akad.media0?igsh=eWx1dGhqY3oyenhs">Instagram</a></li>
               <li><a href="mailto:contact@ak-ad.com">contact@ak-ad.com</a></li>
             </ul>
           </div>
@@ -79,7 +80,7 @@ export function SiteFooter() {
 
         <div className="footer-bottom">
           <span>© 2026 AK-AD media. All rights reserved.</span>
-          <span>Privacy Policy | Terms</span>
+          <span className="footer-legal">Privacy Policy | Terms</span>
         </div>
       </div>
     </footer>
