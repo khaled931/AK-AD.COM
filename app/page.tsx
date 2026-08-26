@@ -1,6 +1,7 @@
 import Image from "next/image";
+import { BeforeAfterShowcase } from "@/components/before-after-slider";
 import { DigitalTest } from "@/components/digital-test";
-import { faqs, sectors, services } from "@/lib/content";
+import { sectors, services } from "@/lib/content";
 
 const problems = [
   ["لديك حسابات سوشال ميديا لكنها لا تجلب عملاء؟", "You have social media accounts, but they do not bring customers?"],
@@ -8,13 +9,6 @@ const problems = [
   ["لا تملك موقعًا أو هوية رقمية احترافية؟", "You do not have a professional website or digital identity?"],
   ["الإعلانات تستهلك الميزانية بدون نتائج واضحة؟", "Ads consume budget without clear results?"],
   ["لا تعرف كيف تظهر شركتك بشكل احترافي أونلاين؟", "You are not sure how to present your business professionally online?"]
-];
-
-const beforeAfter = [
-  ["صفحة إنستغرام غير منظمة", "صفحة احترافية بهوية واضحة", "Unorganized Instagram page", "Professional page with a clear identity"],
-  ["منشورات عشوائية", "محتوى منظم بخطة شهرية", "Random posts", "Organized content with a monthly plan"],
-  ["إعلانات بدون نتائج", "حملات مبنية على تحليل واستهداف", "Ads without results", "Campaigns based on analysis and targeting"],
-  ["شركة غير ظاهرة على Google", "ظهور محلي أفضل وطرق تواصل واضحة", "Business not visible on Google", "Better local visibility and clear contact channels"]
 ];
 
 const steps = [
@@ -133,32 +127,20 @@ export default function HomePage() {
       </section>
 
       <section className="section-sm">
-        <div className="container grid grid-2">
-          <div>
-            <p className="eyebrow"><span data-lang="ar">قبل وبعد</span><span data-lang="en">Before & after</span></p>
-            <h2><span data-lang="ar">القيمة تظهر عندما يصبح العمل منظمًا.</span><span data-lang="en">Value appears when the work becomes organized.</span></h2>
-          </div>
-          <div className="grid">
-            {beforeAfter.map(([beforeAr, afterAr, beforeEn, afterEn]) => (
-              <div className="before-after" key={beforeAr}>
-                <div><strong><span data-lang="ar">قبل</span><span data-lang="en">Before</span></strong><p className="muted"><span data-lang="ar">{beforeAr}</span><span data-lang="en">{beforeEn}</span></p></div>
-                <div><strong><span data-lang="ar">بعد</span><span data-lang="en">After</span></strong><p className="muted"><span data-lang="ar">{afterAr}</span><span data-lang="en">{afterEn}</span></p></div>
-              </div>
-            ))}
-          </div>
+        <div className="container">
+          <p className="eyebrow"><span data-lang="ar">قبل وبعد</span><span data-lang="en">Before & after</span></p>
+          <h2><span data-lang="ar">شاهد الفرق بين حساب غير منظم وحضور رقمي احترافي.</span><span data-lang="en">Compare an unorganized account with a polished digital presence.</span></h2>
+          <p className="muted" data-lang="ar">اسحب الخط أفقيًا لمقارنة نماذج تجريبية لحسابات عربية قبل التحسين وبعده.</p>
+          <p className="muted" data-lang="en">Drag horizontally to compare fictional Arabic social accounts before and after improvement.</p>
+          <BeforeAfterShowcase />
         </div>
       </section>
 
       <section className="section-sm">
-        <div className="container grid grid-2">
+        <div className="container">
           <div className="card steps">
             <p className="eyebrow"><span data-lang="ar">خطوات العمل</span><span data-lang="en">Work process</span></p>
             <div className="grid">{steps.map(([ar, en]) => <div className="step" key={ar}><strong><span data-lang="ar">{ar}</span><span data-lang="en">{en}</span></strong></div>)}</div>
-          </div>
-          <div className="card faq">
-            <p className="eyebrow">FAQ</p>
-            <h2><span data-lang="ar">أسئلة شائعة</span><span data-lang="en">Frequently asked questions</span></h2>
-            <div className="grid">{faqs.slice(0, 4).map(([ar, en]) => <details key={ar}><summary><span data-lang="ar">{ar}</span><span data-lang="en">{en}</span></summary><p><span data-lang="ar">نعم، يمكن تخصيص الحل حسب وضع الشركة وميزانيتها ومرحلة نموها.</span><span data-lang="en">Yes, the solution can be customized based on your business stage, budget, and growth needs.</span></p></details>)}</div>
           </div>
         </div>
       </section>

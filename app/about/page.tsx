@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { faqs } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "من نحن",
@@ -34,6 +35,21 @@ export default function AboutPage() {
           <h2><span data-lang="ar">قيمنا</span><span data-lang="en">Our values</span></h2>
           <div className="grid grid-3">{values.map(([ar, en]) => <div className="card" key={ar}><strong><span data-lang="ar">{ar}</span><span data-lang="en">{en}</span></strong></div>)}</div>
         </div>
+
+        <section className="section-sm" aria-labelledby="about-faq-title">
+          <div className="card faq">
+            <p className="eyebrow">FAQ</p>
+            <h2 id="about-faq-title"><span data-lang="ar">أسئلة شائعة</span><span data-lang="en">Frequently asked questions</span></h2>
+            <div className="grid">
+              {faqs.slice(0, 4).map(([ar, en]) => (
+                <details key={ar}>
+                  <summary><span data-lang="ar">{ar}</span><span data-lang="en">{en}</span></summary>
+                  <p><span data-lang="ar">نعم، يمكن تخصيص الحل حسب وضع الشركة وميزانيتها ومرحلة نموها.</span><span data-lang="en">Yes, the solution can be customized based on your business stage, budget, and growth needs.</span></p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
       </div>
     </section>
   );
